@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: stg_addresses
+    description: Full addresses corresponding to each address id
+    columns:
+      - name: address_id
+      - name: address
+      - name: zipcode
+      - name: state
+      - name: country
+  - name: stg_events
+    description: Actions taken on the website
+    columns:
+      - name: event_id
+      - name: session_id
+      - name: user_id
+      - name: event_type
+      - name: page_url
+      - name: created_at
+      - name: order_id
+      - name: product_id
+  - name: stg_order_items
+    description: How many of each product in an order
+    columns:
+      - name: order_id
+      - name: product_id
+      - name: quantity
+  - name: stg_orders
+    description: Full details of each order placed
+    columns:
+      - name: order_id
+      - name: promo_id
+      - name: user_id
+      - name: address_id
+      - name: created_at
+      - name: order_cost
+      - name: shipping_cost
+      - name: order_total
+      - name: tracking_id
+      - name: shipping_service
+      - name: estimated_delivery_at
+      - name: delivered_at
+      - name: status
+  - name: stg_products
+    description: pricing and in stock info for all products 
+    columns:
+      - name: product_id
+      - name: name
+      - name: price
+      - name: inventory
+  - name: stg_promos
+    description: details for each promo code
+    columns: 
+      - name: promo_id
+      - name: discount
+      - name: status
+  - name: stg_users
+    description: full details about each user 
+    columns: 
+      - name: user_id
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: created_at
+      - name: updated_at
+      - name: address_id
