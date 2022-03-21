@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: fact_page_views
+    description: contains all page view events
+    columns:
+      - name: event_guid
+      - name: session_guid
+      - name: user_guid
+      - name: page_url
+      - name: created_at_utc
+      - name: product_guid
+      - name: product_name
+      - name: price
+      - name: inventory_count

@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: product details, including how many times purchased
+    columns:
+      - name: product_guid
+      - name: product_name
+      - name: price
+      - name: inventory_count
+      - name: total_sold
+  - name: dim_users
+    description: user details, including address and number of orders made
+    columns:
+      - name: user_guid
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: created_at_utc
+      - name: updated_at_utc
+      - name: address_guid
+      - name: street_address
+      - name: zipcode
+      - name: state
+      - name: country
+      - name: order_count
+  - name: fact_orders
+    description: order details, including how many different products and total items in order, and general location info
+    columns:
+      - name: order_guid
+      - name: user_guid
+      - name: address_guid
+      - name: zipcode
+      - name: state
+      - name: country
+      - name: created_at_utc
+      - name: order_cost
+      - name: products_bought
+      - name: items_bought
+      - name: shipping_cost
+      - name: order_total
+      - name: tracking_guid
+      - name: shipping_service
+      - name: estimated_delivery_at_utc
+      - name: delivered_at_utc
+      - name: delivery_estimate_error
+      - name: delivery_time
+      - name: order_status

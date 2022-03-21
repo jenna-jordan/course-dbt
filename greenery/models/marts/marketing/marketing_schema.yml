@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: user_order_facts
+    description: contains order information at the user level
+    columns:
+      - name: user_guid
+      - name: email
+      - name: phone_number
+      - name: address_guid
+      - name: street_address
+      - name: zipcode
+      - name: state
+      - name: country
+      - name: order_count
+      - name: total_products
+      - name: total_items
+      - name: total_spent
+      - name: order_in_progress
