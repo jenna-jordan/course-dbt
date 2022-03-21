@@ -1,5 +1,15 @@
+{{
+  config(
+    materialized='table'
+  )
+}}
+
+with promos as (
+    select * from {{ source('postgres', 'promos') }}
+)
+
 SELECT 
     promo_id,
-    discount,
+    discount as discount_percent,
     status
-FROM {{ source('raw', 'promos') }}
+FROM promos
