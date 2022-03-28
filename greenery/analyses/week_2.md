@@ -46,9 +46,22 @@ Features to investigate
 
 3. Explain the marts models you added. Why did you organize the models in the way you did?
 
-I added the suggested models: fact_orders, dim_products, dim_users, user_order_facts, and fact_page_views (I may add more later as time allows). I used the suggested organization. I did not use any intermediate models, and I'm not sure where I might be able to move a CTE into it's own intermediate model (I'm not sure I totally understand the point of intermediate models).
+I added the suggested models: fact_orders, dim_products, dim_users, user_order_facts, and fact_page_views. I also added an intermediate model, as I noticed I used the same CTE for both the user_order_facts and fact_orders models, which aggregated the order_items table to the order level.
 
 4. Use the dbt docs to visualize your model DAGs to ensure the model layers make sense
 
 ![](week_2_dag.png)
 
+## Part 2
+
+1. What assumptions are you making about each model? (i.e. why are you adding each test?)
+
+I'm approaching tests from the perspective of these are assumptions I would normally put in the table creation statement - primary keys, foreign keys, null/not null, and check constraints. But rather than having the insert fail, I am using tests to make sure these assumptions are true after the values have been inserted/materialized. I also used the custom test positive_values for amounts.
+
+2. Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?
+
+All of my tests succeeded. However, this is likely because I only tested basic things and I don't know the data very well beyond what I can see of it - therefore I don't have the domain knowledge to have extensive assumptions to check in the first place.
+
+3. Your stakeholders at Greenery want to understand the state of the data each day. Explain how you would ensure these tests are passing regularly and how you would alert stakeholders about bad data getting through.
+
+I would probably run the tests every day after running the models, and then investigate any failed tests. In order to alert stakeholders, I would need to know who the data owners are - which would require some documentation to accompany the source database. I expect there is a way to schedule runs/tests automatically, but I'm not familiar with that yet.

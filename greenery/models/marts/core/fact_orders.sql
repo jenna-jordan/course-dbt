@@ -16,16 +16,8 @@ stg_addresses as (
     select * from {{ ref( 'stg_addresses') }}
 ),
 
-products_bought as(
-    select order_guid, count(product_guid) as products_bought
-    from stg_order_items
-    group by order_guid
-),
-
-items_bought as(
-    select order_guid, sum(quantity) as items_bought
-    from stg_order_items
-    group by order_guid
+int_products_bought as (
+    select * from {{ ref( 'int_products_bought') }}
 )
 
 select 
@@ -37,8 +29,8 @@ select
     a.country,
     o.created_at_utc,
     o.order_cost,
-    p.products_bought,
-    i.items_bought,
+    p.products_bought_count,
+    p.items_bought_count,
     o.shipping_cost,
     o.order_total,
     o.tracking_guid,
@@ -49,6 +41,5 @@ select
     delivered_at_utc - created_at_utc as delivery_time,
     o.order_status
 from stg_orders o
-    left join products_bought p on o.order_guid = p.order_guid
-    left join items_bought i on o.order_guid = i.order_guid
+    left join int_products_bought p on o.order_guid = p.order_guid
     left join stg_addresses a on o.address_guid = a.address_guid

@@ -22,25 +22,20 @@ stg_order_items as (
     select * from {{ ref( 'stg_order_items') }}
 ),
 
-products_bought as(
-    select 
-        order_guid, 
-        count(product_guid) as products_bought,
-        sum(quantity) as items_bought
-    from stg_order_items
-    group by order_guid
+int_products_bought as(
+    select * from {{ ref( 'int_products_bought') }}
 ),
 
 orders_made as (
     select 
         o.user_guid, 
         count(o.order_guid) as total_orders,
-        sum(p.products_bought) as total_products,
-        sum(p.items_bought) as total_items,
+        sum(p.products_bought_count) as total_products,
+        sum(p.items_bought_count) as total_items,
         sum(order_total) as total_spent,
         max(order_in_progress) as order_in_progress
     from stg_orders o
-        left join products_bought p on o.order_guid = p.order_guid
+        left join int_products_bought p on o.order_guid = p.order_guid
     group by user_guid
 )
 

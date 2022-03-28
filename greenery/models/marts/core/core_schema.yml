@@ -5,45 +5,101 @@ models:
     description: product details, including how many times purchased
     columns:
       - name: product_guid
+        tests:
+          - unique
+          - not_null
       - name: product_name
       - name: price
+        tests:
+          - positive_values
+          - not_null
       - name: inventory_count
+        tests:
+          - not_null
       - name: total_sold
+        tests:
+          - positive_values
+          - not_null
   - name: dim_users
     description: user details, including address and number of orders made
     columns:
       - name: user_guid
+        tests:
+          - unique
+          - not_null
       - name: first_name
+        tests: 
+          - not_null
       - name: last_name
+        tests: 
+          - not_null
       - name: email
+        tests: 
+          - not_null
       - name: phone_number
+        tests: 
+          - not_null
       - name: created_at_utc
+        tests: 
+          - not_null
       - name: updated_at_utc
       - name: address_guid
+        tests: 
+          - not_null
       - name: street_address
       - name: zipcode
       - name: state
       - name: country
       - name: order_count
+        tests: 
+          - not_null
   - name: fact_orders
     description: order details, including how many different products and total items in order, and general location info
     columns:
       - name: order_guid
+        tests:
+          - unique
+          - not_null
       - name: user_guid
+        tests: 
+          - not_null
       - name: address_guid
+        tests: 
+          - not_null
       - name: zipcode
       - name: state
       - name: country
       - name: created_at_utc
+        tests:
+          - not_null
       - name: order_cost
-      - name: products_bought
-      - name: items_bought
+        tests:
+          - not_null
+          - positive_values
+      - name: products_bought_count
+        tests:
+          - not_null
+          - positive_values
+      - name: items_bought_count
+        tests:
+          - not_null
+          - positive_values
       - name: shipping_cost
+        tests: 
+          - not_null
       - name: order_total
+        tests:
+          - not_null
+          - positive_values
       - name: tracking_guid
       - name: shipping_service
+        tests: 
+          - accepted_values:
+              values: ['ups', 'fedex', 'dhl', 'usps']
       - name: estimated_delivery_at_utc
       - name: delivered_at_utc
       - name: delivery_estimate_error
       - name: delivery_time
       - name: order_status
+        tests: 
+          - not_null

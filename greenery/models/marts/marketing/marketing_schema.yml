@@ -5,9 +5,14 @@ models:
     description: contains order information at the user level
     columns:
       - name: user_guid
+        tests: 
+          - unique 
+          - not_null
       - name: email
       - name: phone_number
       - name: address_guid
+        tests:
+          - not_null
       - name: street_address
       - name: zipcode
       - name: state
@@ -17,3 +22,16 @@ models:
       - name: total_items
       - name: total_spent
       - name: order_in_progress
+  - name: int_products_bought
+    description: contains order information from order_items aggregated to the order 
+    columns: 
+      - name: order_guid
+        tests: 
+          - unique 
+          - not_null
+      - name: products_bought_count
+        tests:
+          - not_null
+      - name: items_bought_count
+        tests:
+          - not_null
