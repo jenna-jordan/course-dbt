@@ -38,3 +38,6 @@ models:
       +materialized: table
     marts:
       +materialized: view
+
+on-run-end:
+  - "GRANT USAGE ON SCHEMA {{schema}} TO reporting;"

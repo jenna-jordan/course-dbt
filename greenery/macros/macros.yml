@@ -1,0 +1,14 @@
+version: 2
+
+macros:
+  - name: one_hot_encode
+    description: pivots a categorical column into multiple one-hot-encoded columns with a value of 1 or 0 
+    docs:
+      show: true
+    arguments:
+      - name: column_name
+        description: the name of the column (as a single quoted string) to be one-hot-encoded 
+      - name: model_name
+        description: the name of the model (as a single quoted string) that the desired column to one-hot-encode is in
+      - name: model_alias
+        description: the alias (as a single quoted string) used for the table in the sql query where the macro is called
