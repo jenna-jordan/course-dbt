@@ -48,3 +48,12 @@ macro: one_hot_encode
 
 ## Part 3
 
+Done
+
+## Part 4
+
+used dbt-utils
+
+## Part 5
+
+![](week_3_dag.png)
