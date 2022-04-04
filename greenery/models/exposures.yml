@@ -1,0 +1,17 @@
+version: 2
+
+exposures:
+  
+  - name: product_funnel
+    type: dashboard
+    maturity: high
+    url: https://bi.tool/dashboards/1
+    description: >
+      How many people who visit the site actually make a purchase?
+    
+    depends_on:
+      - ref('funnel_sessions')
+      
+    owner:
+      name: Jenna
+      email: jenna@co.com

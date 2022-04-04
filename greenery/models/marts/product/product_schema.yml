@@ -26,3 +26,24 @@ models:
       - name: inventory_count
         tests: 
           - not_null
+  - name: fact_sessions_events
+    description: for each session, whether it had an event of each type
+    columns: 
+      - name: session_guid
+        tests: 
+          - unique
+          - not_null
+      - name: has_page_view
+      - name: has_add_to_cart
+      - name: has_checkout
+      - name: has_package_shipped
+  - name: funnel_sessions
+    description: for each session, whether it is in each funnel level
+    columns: 
+      - name: session_guid
+        tests: 
+          - unique
+          - not_null
+      - name: level_page_view
+      - name: level_add_to_cart
+      - name: level_checkout
